@@ -1,0 +1,17 @@
+workflows:
+  ios-build:
+    name: Bikram iOS Build
+    platform: ios
+    xcode_project: BikramCalendarApp.xcodeproj
+    xcode_scheme: BikramCalendarApp
+    build:
+      ios:
+        export_method: development
+    test:
+      ios:
+        test_type: unit_tests
+    triggering:
+      git:
+        push:
+          branches:
+            - master

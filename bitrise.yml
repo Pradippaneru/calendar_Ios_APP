@@ -1,0 +1,13 @@
+format_version: '11'
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+project_type: ios
+workflows:
+  primary:
+    steps:
+      - activate-ssh-key@4: {}
+      - git-clone@6: {}
+      - xcode-archive@4:
+          inputs:
+            - project_path: BikramCalendarApp.xcodeproj
+            - scheme: BikramCalendarApp
+      - deploy-to-bitrise-io@1: {}
