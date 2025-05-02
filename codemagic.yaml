@@ -1,17 +1,23 @@
 workflows:
   ios-build:
     name: Bikram iOS Build
-    platform: ios
-    xcode_project: BikramCalendarApp.xcodeproj
-    xcode_scheme: BikramCalendarApp
-    build:
-      ios:
-        export_method: development
-    test:
-      ios:
-        test_type: unit_tests
+    environment:
+      xcode: latest
     triggering:
-      git:
-        push:
-          branches:
-            - master
+      events:
+        - push
+      branch_patterns:
+        - pattern: master
+          include: true
+    scripts:
+      - name: Install dependencies
+        script: echo "No dependencies to install"
+      - name: Build the app
+        script: |
+          xcodebuild -project BikramCalendarApp.xcodeproj \
+                     -scheme BikramCalendarApp \
+                     -sdk iphoneos \
+                     -configuration Release \
+                     CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+    artifacts:
+      - build/ios/iphoneos/*.app
