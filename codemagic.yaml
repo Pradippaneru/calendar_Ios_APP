@@ -10,8 +10,10 @@ workflows:
         - pattern: master
           include: true
     scripts:
-      - name: Install dependencies
-        script: echo "No dependencies to install"
+      - name: List Xcode Schemes
+        script: |
+          echo "Listing available schemes in your project..."
+          xcodebuild -list -project BikramCalendarApp.xcodeproj
       - name: Build the app
         script: |
           xcodebuild -project BikramCalendarApp.xcodeproj \
